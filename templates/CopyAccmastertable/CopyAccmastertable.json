@@ -1,0 +1,250 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name"
+		},
+		"ACCTMASTER_ONPREMISESQL": {
+			"type": "string"
+		},
+		"ACCTMASTER_AZURESQL": {
+			"type": "string"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/CopyAccmastertable')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CopyAcctMAater",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ACID",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "ACID",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "NAME",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NAME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "ADDRESS",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ADDRESS",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "BRID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "BRID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "PID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "PID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DOO",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "DOO",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "CBALANCE",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "CBALANCE",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "UBALANCE",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "UBALANCE",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "STATUS",
+											"type": "String"
+										},
+										"sink": {
+											"name": "STATUS",
+											"type": "String"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ACCTMASTERTABLE_ONPREMSQL",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ACCTMASTERTABLE_AZURESQL",
+								"type": "DatasetReference"
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ACCTMASTERTABLE_ONPREMSQL')]",
+				"[concat(variables('factoryId'), '/datasets/ACCTMASTERTABLE_AZURESQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCTMASTERTABLE_ONPREMSQL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('ACCTMASTER_ONPREMISESQL')]",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "OLDDS"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ACID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NAME",
+						"type": "varchar"
+					},
+					{
+						"name": "ADDRESS",
+						"type": "varchar"
+					},
+					{
+						"name": "BRID",
+						"type": "char"
+					},
+					{
+						"name": "PID",
+						"type": "char"
+					},
+					{
+						"name": "DOO",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CBALANCE",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "UBALANCE",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "STATUS",
+						"type": "char"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[ACCT_MASTER]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ACCTMASTERTABLE_AZURESQL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('ACCTMASTER_AZURESQL')]",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "OLDDS"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "[[dbo].[ACCT_MASTER]"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
