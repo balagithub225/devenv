@@ -1,0 +1,16 @@
+{
+	"name": "AzuesqlGetList",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSQLMultipletbls",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OLDDS"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

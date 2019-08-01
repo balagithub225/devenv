@@ -1,0 +1,77 @@
+{
+	"name": "IncrementalDataLoad",
+	"properties": {
+		"activities": [
+			{
+				"name": "AMASTERiNCLOAD",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "MaxDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": {
+							"value": "SELECT * FROM AMASTER \nWHERE DOO > '@{activity('MaxDate').output.firstrow.maxdate}'",
+							"type": "Expression"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "OnPremMasterTable",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSqlMasterTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "MaxDate",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select max(DOO) as maxdate from AMASTER"
+					},
+					"dataset": {
+						"referenceName": "AzureSqlMasterTable",
+						"type": "DatasetReference"
+					}
+				}
+			}
+		],
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,51 @@
+{
+	"name": "Empdata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "collegedatablob",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OLDDS"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "testdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Emp_Id",
+				"type": "String"
+			},
+			{
+				"name": "Emp_Name",
+				"type": "String"
+			},
+			{
+				"name": "Dept_Name",
+				"type": "String"
+			},
+			{
+				"name": "Dept_Id",
+				"type": "String"
+			},
+			{
+				"name": "Designation",
+				"type": "String"
+			},
+			{
+				"name": "Salary",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

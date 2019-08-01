@@ -1,0 +1,63 @@
+{
+	"name": "ACCTMASTERTABLE_ONPREMSQL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ACCTMASTER_ONPREMISESQL",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OLDDS"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ACID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "ADDRESS",
+				"type": "varchar"
+			},
+			{
+				"name": "BRID",
+				"type": "char"
+			},
+			{
+				"name": "PID",
+				"type": "char"
+			},
+			{
+				"name": "DOO",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CBALANCE",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "UBALANCE",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "STATUS",
+				"type": "char"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[ACCT_MASTER]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

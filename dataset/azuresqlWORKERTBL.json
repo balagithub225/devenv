@@ -1,0 +1,45 @@
+{
+	"name": "azuresqlWORKERTBL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "collegeSQLDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "WORKER_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "FIRST_NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "LAST_NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "SALARY",
+				"type": "varchar"
+			},
+			{
+				"name": "JOINING_DATE",
+				"type": "varchar"
+			},
+			{
+				"name": "DEPARTMENT",
+				"type": "varchar"
+			},
+			{
+				"name": "LOC",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[worker]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,90 @@
+{
+	"name": "pipeline2",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetMetaDataCollegeaBnglore",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"itemName",
+						"lastModified",
+						"size"
+					],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSetting",
+						"recursive": true
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSetting"
+					}
+				}
+			},
+			{
+				"name": "SqlServerStoredProcedure1",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "GetMetaDataCollegeaBnglore",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[spUpdatelog]",
+					"storedProcedureParameters": {
+						"FileName": {
+							"value": {
+								"value": "@{activity('GetMetaDataCollegeaBnglore').output.ItemName}\n",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"LoadDate": {
+							"value": {
+								"value": "@{activity('GetMetaDataCollegeaBnglore').output.LastModified}\n",
+								"type": "Expression"
+							},
+							"type": "DateTime"
+						},
+						"Size": {
+							"value": {
+								"value": "@{activity('GetMetaDataCollegeaBnglore').output.Size}",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "collegeSQLDB",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

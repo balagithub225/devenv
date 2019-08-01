@@ -1,0 +1,49 @@
+{
+	"name": "OnPremMasterTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OnPremSqlServer",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OLDDS"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ACID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "BRID",
+				"type": "char"
+			},
+			{
+				"name": "PID",
+				"type": "char"
+			},
+			{
+				"name": "DOO",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CBALANCE",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[AMASTER]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

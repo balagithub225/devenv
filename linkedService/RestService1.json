@@ -1,0 +1,13 @@
+{
+	"name": "RestService1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://api.aislelabs.com/api/rest/metrics/report.json?tdid=2355&user_key=d85cd912237152c91bc598aaca58f6ed&startTime=1559808637&endTime=1559808697",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

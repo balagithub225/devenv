@@ -1,0 +1,138 @@
+{
+	"name": "CopyAccmastertable",
+	"properties": {
+		"activities": [
+			{
+				"name": "CopyAcctMAater",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource"
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ACID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "ACID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ADDRESS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ADDRESS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BRID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BRID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DOO",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "DOO",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "CBALANCE",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "CBALANCE",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "UBALANCE",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "UBALANCE",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "STATUS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "STATUS",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ACCTMASTERTABLE_ONPREMSQL",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ACCTMASTERTABLE_AZURESQL",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

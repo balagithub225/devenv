@@ -1,0 +1,16 @@
+{
+	"name": "ACCTMASTER_ONPREMISESQL",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=BALU;initial catalog=NEW_PROJECT;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyMmQxNGQyYi1kM2JhLTRmZmItODYxNy01YmQxYTQ5Y2M2ZjkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "IRSelf",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

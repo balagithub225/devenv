@@ -1,0 +1,22 @@
+{
+	"name": "AzureSqlTableMultitblOutput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSQLMultipletbls",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OLDDS"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": {
+				"value": "@item.tblName",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

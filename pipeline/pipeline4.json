@@ -1,0 +1,32 @@
+{
+	"name": "pipeline4",
+	"properties": {
+		"activities": [
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://api.aislelabs.com/api/rest/metrics/report.json?tdid=2355&user_key=d85cd912237152c91bc598aaca58f6ed&startTime=1559808637&endTime=1559808697",
+					"method": "GET",
+					"datasets": [
+						{
+							"referenceName": "RestResource1",
+							"type": "DatasetReference"
+						}
+					]
+				}
+			}
+		],
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,19 @@
+{
+	"name": "ACCTMASTERTABLE_AZURESQL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ACCTMASTER_AZURESQL",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OLDDS"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "[dbo].[ACCT_MASTER]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

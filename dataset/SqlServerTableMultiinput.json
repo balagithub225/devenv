@@ -1,0 +1,16 @@
+{
+	"name": "SqlServerTableMultiinput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQLmultiinput",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OLDDS"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

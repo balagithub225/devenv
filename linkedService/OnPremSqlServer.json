@@ -1,0 +1,16 @@
+{
+	"name": "OnPremSqlServer",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=BALU;initial catalog=\"INDIAN BANK\";user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIxMDc0Y2U0My02ZGQ1LTQ4MTktODA1Zi05YWFlOThhZmYxNTIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "IRSelf",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

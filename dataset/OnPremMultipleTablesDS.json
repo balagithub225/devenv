@@ -1,0 +1,16 @@
+{
+	"name": "OnPremMultipleTablesDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OnPremSqlMultipleTables",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OLDDS"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

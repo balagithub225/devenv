@@ -1,0 +1,36 @@
+{
+	"name": "AzureSqlGetMetaDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlGetMeta",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Sno",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FileName",
+				"type": "varchar"
+			},
+			{
+				"name": "LoadDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Size",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Filelog]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

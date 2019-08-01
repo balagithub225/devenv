@@ -1,0 +1,22 @@
+{
+	"name": "AzureBlob1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "restapiblob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureBlob",
+		"typeProperties": {
+			"format": {
+				"type": "JsonFormat"
+			},
+			"fileName": {
+				"value": "@concat('test','.','json')",
+				"type": "Expression"
+			},
+			"folderPath": "restapi"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
